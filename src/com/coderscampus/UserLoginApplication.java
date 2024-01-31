@@ -1,6 +1,9 @@
 package com.coderscampus;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 // import com.coderscampus.UserService;
 
@@ -9,27 +12,27 @@ public class UserLoginApplication {
 	public static void main(String[] args) {
 		// UserService userService = new UserService();
 				
-		BufferedReader fileReader = null;
+		BufferedReader br = null;
 		try {
-			fileReader = new BufferedReader(new FileReader("data.txt"));
+			br = new BufferedReader(new FileReader("data1.txt"));
 			
 			String line;
-			while ((line = fileReader.readLine()) != null) {
+			while ((line = br.readLine()) != null) {
 				System.out.println(line);
 			}
 			
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException x) {
 			System.out.println("Oops, the file wasn't found");
-			e.printStackTrace(); 
-		} catch (IOException e) {
+			x.printStackTrace(); 
+		} catch (IOException x) {
 				System.out.println("Oops, there was an I/O Exception");
-				e.printStackTrace();
+				x.printStackTrace();
 		} finally {
 			try {
 				System.out.println("Closing file reader");
-				fileReader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+				br.close();
+			} catch (IOException x) {
+				x.printStackTrace();
 			}
 			
 		}
