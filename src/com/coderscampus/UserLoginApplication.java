@@ -2,23 +2,59 @@ package com.coderscampus;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
-// import com.coderscampus.UserService;
+import com.coderscampus.User;
+import com.coderscampus.UserService;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserLoginApplication {
 
 	public static void main(String[] args) {
-		// UserService userService = new UserService();
+	/*			
+		Scanner scanner = new Scanner(System.in);
+		int wrongAttempts = 0;
+		int attemptLimit = 5;
+		while (wrongAttempts < attemptLimit) {
+			//user input
+			System.out.println("Enter Username:");
+			String un = scanner.next();
+			System.out.println("Enter Password: ");
+			String pw = scanner.next();
+	*/	
+		
+	/*
+			//validation 
+			if () {
+				System.out.println("Invalid login, please try again.");
+				continue;
 				
+			} 
+	*/
+	/*		
+			wrongAttempts++;
+		}
+	*/	
+		List<String> listOfStrings = new ArrayList<String>();
+				
+		UserService userService = new UserService();
+					
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader("data1.txt"));
 			
-			String line;
-			while ((line = br.readLine()) != null) {
-				System.out.println(line);
+			String credentials = br.readLine();
+			while (credentials != null) {
+				listOfStrings.add(credentials);
+				credentials = br.readLine();
+			}
+			br.close();
+			
+			String[] array = listOfStrings.toArray(new String[0]);
+			for (String str : array) {
+				System.out.println(str);
 			}
 			
 		} catch (FileNotFoundException x) {
@@ -34,11 +70,8 @@ public class UserLoginApplication {
 			} catch (IOException x) {
 				x.printStackTrace();
 			}
-			
 		}
-		
 	}
-	
 }
 			
 			
@@ -49,7 +82,7 @@ public class UserLoginApplication {
 		2.	validate whether or not username/password combination is valid by:
 				-	reading this info from a file (called "data.txt")
 				-	importing the data into your Java application
-		3.	create a User POJO that stores the info read from the file
+		3.	create a User POJO that stores the info read from the file >>> User
 		4.	The User POJO should contain (username, password, name)
 		5.	The file info should be stored as an Array of User objects
 		6.	Once the data is stored in the Java application, you can begin process of prompting for username and password
