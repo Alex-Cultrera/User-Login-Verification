@@ -13,7 +13,32 @@ import java.util.List;
 public class UserLoginApplication {
 
 	public static void main(String[] args) {
-	/*			
+	
+		UserService userService = new UserService();
+		BufferedReader input = null;
+		try {
+			input = new BufferedReader(new FileReader("data1.txt"));
+			System.out.println(userService.array(input));
+			input.close();
+		} catch (FileNotFoundException x) {
+			System.out.println("Oops, the file wasn't found");
+			x.printStackTrace(); 
+		} catch (IOException x) {
+				System.out.println("Oops, there was an I/O Exception");
+				x.printStackTrace();
+		} finally {
+			System.out.println("Closing file reader");
+			try {
+				input.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+			
+		/*			
 		Scanner scanner = new Scanner(System.in);
 		int wrongAttempts = 0;
 		int attemptLimit = 5;
@@ -37,40 +62,6 @@ public class UserLoginApplication {
 			wrongAttempts++;
 		}
 	*/	
-		List<String> listOfStrings = new ArrayList<String>();
-				
-		UserService userService = new UserService();
-					
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader("data1.txt"));
-			
-			String credentials = br.readLine();
-			while (credentials != null) {
-				listOfStrings.add(credentials);
-				credentials = br.readLine();
-			}
-			br.close();
-			
-			String[] array = listOfStrings.toArray(new String[0]);
-			for (String str : array) {
-				System.out.println(str);
-			}
-			
-		} catch (FileNotFoundException x) {
-			System.out.println("Oops, the file wasn't found");
-			x.printStackTrace(); 
-		} catch (IOException x) {
-				System.out.println("Oops, there was an I/O Exception");
-				x.printStackTrace();
-		} finally {
-			try {
-				System.out.println("Closing file reader");
-				br.close();
-			} catch (IOException x) {
-				x.printStackTrace();
-			}
-		}
 	}
 }
 			
