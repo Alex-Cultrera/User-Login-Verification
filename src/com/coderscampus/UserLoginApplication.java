@@ -8,6 +8,7 @@ import java.io.FileReader;
 import com.coderscampus.User;
 import com.coderscampus.UserService;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserLoginApplication {
@@ -18,7 +19,7 @@ public class UserLoginApplication {
 		BufferedReader input = null;
 		try {
 			input = new BufferedReader(new FileReader("data1.txt"));
-			System.out.println(userService.array(input));
+			System.out.println(Arrays.toString(userService.array(input)));
 			input.close();
 		} catch (FileNotFoundException x) {
 			System.out.println("Oops, the file wasn't found");
