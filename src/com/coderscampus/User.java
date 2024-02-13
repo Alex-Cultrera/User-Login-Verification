@@ -5,6 +5,18 @@ public class User {
 	private String username;
 	private String password;
 	private String name;
+	int i = 0;
+	
+	void createUser (int i, String username, String password, String name) {
+		User[] theNewUser = new User[i];
+		this.username=username;
+		this.password=password;
+		this.name=name;
+		theNewUser[i].setUsername(username);
+		theNewUser[i].setPassword(password);
+		theNewUser[i].setName(name);
+		}
+	
 	
 	public String getUsername() {
 		return username;

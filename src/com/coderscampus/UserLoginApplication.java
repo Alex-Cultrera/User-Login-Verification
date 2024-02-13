@@ -7,20 +7,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import com.coderscampus.User;
 import com.coderscampus.UserService;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class UserLoginApplication {
 
 	public static void main(String[] args) {
 	
 		UserService userService = new UserService();
+		User person = new User();
 		BufferedReader input = null;
+		
 		try {
 			input = new BufferedReader(new FileReader("data1.txt"));
-			System.out.println(Arrays.toString(userService.array(input)));
+			userService.users(input);
+			System.out.println(person.)
 			input.close();
+				
 		} catch (FileNotFoundException x) {
 			System.out.println("Oops, the file wasn't found");
 			x.printStackTrace(); 

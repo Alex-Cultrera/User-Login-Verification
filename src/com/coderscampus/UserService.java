@@ -3,25 +3,35 @@ package com.coderscampus;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.BufferedReader;
-import java.util.ArrayList;
 
 
 public class UserService {
 	
 	BufferedReader br = null;
-	String[] theUserArray = null;
+	String[] userArray;
+			
+	String[] users (BufferedReader br) {
+		//	provide the service of reading data from the file 
+		// 	and creating the user array
 		
-	String[] array (BufferedReader br) {
 		this.br=br;
 		try {
 			String credentials = br.readLine();
-			ArrayList<String> listOfStrings = new ArrayList<String>();
+			int x = 0;
 			while (credentials != null) {
-				listOfStrings.add(credentials);
+				userArray = new String[0];
+				userArray = credentials.split(",");
+				User newb = new User();
+				newb.createUser(x, userArray[0], userArray[1], userArray[2]);
 				credentials = br.readLine();
+				x++;
+							
 			}
 			br.close();
-		theUserArray = listOfStrings.toArray(new String[0]);
+			
+		
+		//	handling of potential exceptions
+		
 		} catch (FileNotFoundException x) {
 			System.out.println("Oops, the file wasn't found");
 			x.printStackTrace(); 
@@ -36,37 +46,14 @@ public class UserService {
 				e.printStackTrace();
 			}
 			}
-		return theUserArray; 
+		
+		return userArray; 
 		
 		}
+	
+	 
 	}
 		
 	
-	
-	
-	/*
-	
-	
-	int i=0;
-	public User createUser (String username, String password, String name) {
-		User[] user = new User[i];
-		user[i].setUsername(username);
-		user[i].setPassword(password);
-		user[i].setName(name);
-		return user[i];
-		}
-	
-	String input = "exampleUsername,examplePassword,exampleName";
-	
-	public String[] parseText(String input) {
-		this.input = input;
-		String[] parse = input.split(",");
-		return parse;
-		
-	}
-	
-	
-	
-}
 
-	*/
+
