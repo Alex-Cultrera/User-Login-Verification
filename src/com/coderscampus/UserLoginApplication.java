@@ -1,27 +1,55 @@
 package com.coderscampus;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.FileReader;
-import com.coderscampus.User;
-import com.coderscampus.UserService;
-import java.util.Arrays;
+
+
 
 public class UserLoginApplication {
 
 	public static void main(String[] args) {
 	
-		UserService userService = new UserService();
-		User person = new User();
 		BufferedReader input = null;
+		BufferedReader input2 = null;
+		int length = 0;
+		int i = 0;
+		String newbieUsername = null;
+		String newbiePassword = null;
+		String newbieName = null;
+		User user = new User();
+		
 		
 		try {
 			input = new BufferedReader(new FileReader("data1.txt"));
-			userService.users(input);
-			System.out.println(person.)
-			input.close();
+			input2 = new BufferedReader(new FileReader("data1.txt"));
+			String credential = input.readLine();
+			String credential2 = input2.readLine();
+			String[] credArgs;
+			
+			while (credential != null) {
+				length++;
+				credential = input.readLine();
+				}
+			
+			User[] newb = new User[length];
+			
+			for (i = 0; i < length; i++) {
+				credArgs = credential2.split(",");
+				newb[i]=user.createUser(credArgs[0], credArgs[1], credArgs[2]);
+				newbieUsername = newb[i].getUsername();	
+				newbiePassword = newb[i].getPassword();
+				newbieName = newb[i].getName();
+				System.out.println(newbieUsername + "," + newbiePassword + "," + newbieName);
+				credential2 = input2.readLine();
+				}
+			
+			System.out.println(newb[2].getName());
+			
+			input.close();		
+			
+			input2.close();
 				
 		} catch (FileNotFoundException x) {
 			System.out.println("Oops, the file wasn't found");
@@ -33,85 +61,14 @@ public class UserLoginApplication {
 			System.out.println("Closing file reader");
 			try {
 				input.close();
+				input2.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
-			
-		/*			
-		Scanner scanner = new Scanner(System.in);
-		int wrongAttempts = 0;
-		int attemptLimit = 5;
-		while (wrongAttempts < attemptLimit) {
-			//user input
-			System.out.println("Enter Username:");
-			String un = scanner.next();
-			System.out.println("Enter Password: ");
-			String pw = scanner.next();
-	*/	
-		
-	/*
-			//validation 
-			if () {
-				System.out.println("Invalid login, please try again.");
-				continue;
-				
-			} 
-	*/
-	/*		
-			wrongAttempts++;
-		}
-	*/	
 	}
 }
-			
-			
-/*
-		1.	Collect Inputs:
-				username
-				password
-		2.	validate whether or not username/password combination is valid by:
-				-	reading this info from a file (called "data.txt")
-				-	importing the data into your Java application
-		3.	create a User POJO that stores the info read from the file >>> User
-		4.	The User POJO should contain (username, password, name)
-		5.	The file info should be stored as an Array of User objects
-		6.	Once the data is stored in the Java application, you can begin process of prompting for username and password
-		7.	Using a Scanner, ask the user for a username and password
-		8.	Validate this input against the Array of User objects
-		9.	Iterate through the User objects and check to see if the username/password inputs received via the Scanner 
-				match any of the User objects in the Array.
-		10.	If a match is found then you should display a message that says:
-				Welcome {insert user's name here}
-				Note: you should populate the {insert user's name here} portion with 
-				the name of the User which matches the inputted username/password.
-		11.	Once a user has successfully logged in, the program can terminate.
-		12.	If no match is found then you should display a message that says:
-				Invalid login, please try again.
-		13.	In the event that there's an invalid login attempt, the user should only be given 5 chances in total to login. 
-		14.	If the user fails to login after their 5th attempt, the program should output a message that states:
-				Too many failed login attempts, you are now locked out.
-				And the program should terminate.
-		
-		
-		Determining a Match
-			A match is found when two conditions are met:
-			
-			  1. The inputted username is a case insensitive match with the username property in the User object
-			  2. The inputted password is a case sensitive match with the password property in the User object.
 
-
-		UserService class 
-				validate if username/password matches what's in our User Array. 
-				provide the service of reading the data from the file and creating the User Array.
-		User POJO Class
-				stores the info read from the file
-				contains (username, password, name)
-				file info should be stored as an Array of User objects
-		UserLoginApplication Class
-				houses the "public static void main" method.
 		
-*/
+		
+		
