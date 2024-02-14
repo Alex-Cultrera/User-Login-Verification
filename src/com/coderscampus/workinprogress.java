@@ -4,30 +4,9 @@ public class workinprogress {
 
 
 	
-	/*			
-	Scanner scanner = new Scanner(System.in);
-	int wrongAttempts = 0;
-	int attemptLimit = 5;
-	while (wrongAttempts < attemptLimit) {
-		//user input
-		System.out.println("Enter Username:");
-		String un = scanner.next();
-		System.out.println("Enter Password: ");
-		String pw = scanner.next();
-*/	
-	
-/*
-		//validation 
-		if () {
-			System.out.println("Invalid login, please try again.");
-			continue;
-			
-		} 
-*/
-/*		
-		wrongAttempts++;
-	}
-*/	
+
+		
+
 
 		
 		
