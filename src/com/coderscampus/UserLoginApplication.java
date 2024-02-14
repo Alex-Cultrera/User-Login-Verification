@@ -68,14 +68,29 @@ public class UserLoginApplication {
 				// VALIDATION 
 				for (int n = 0; n<length; n++) {
 					if (un != newb[n].getUsername()) {
-										
 					} 
-										
+					
+					else if (un == newb[n].getUsername()) {
+						for (int m = 0; m<length; m++) {
+							if (pw != newb[m].getPassword()) {
+							}
+							else if (pw == newb[m].getPassword()) {
+								System.out.println("Welcome" + newb[m].getName() + "!");
+								System.exit(0);
+							}
+						}
+						
+					}
+					
 				}
 				System.out.println("Invalid login, please try again.");
 				wrongAttempts++;
 				continue;
+				
+				
 			}
+			System.out.println("Too many failed login attempts, you are now locked out.");
+			System.exit(0);
 
 			
 			input.close();		
