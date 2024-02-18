@@ -1,27 +1,13 @@
 package com.coderscampus;
 
-public class workinprogress {
-
+public class UserService {
 
 	
-
-		
-
-
-		
-		
+	
 /*
-	1.	Collect Inputs:
-			username
-			password
-	2.	validate whether or not username/password combination is valid by:
-			-	reading this info from a file (called "data.txt")
-			-	importing the data into your Java application
-	3.	create a User POJO that stores the info read from the file >>> User
-	4.	The User POJO should contain (username, password, name)
-	5.	The file info should be stored as an Array of User objects
-	6.	Once the data is stored in the Java application, you can begin process of prompting for username and password
-	7.	Using a Scanner, ask the user for a username and password
+
+	
+	
 	8.	Validate this input against the Array of User objects
 	9.	Iterate through the User objects and check to see if the username/password inputs received via the Scanner 
 			match any of the User objects in the Array.
@@ -56,7 +42,6 @@ public class workinprogress {
 			houses the "public static void main" method.
 	
 */
-
 	
 	
 }

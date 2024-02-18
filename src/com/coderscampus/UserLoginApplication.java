@@ -16,9 +16,9 @@ public class UserLoginApplication {
 		BufferedReader input2 = null;
 		int length = 0;
 		int i = 0;
-		String newbieUsername = null;
-		String newbiePassword = null;
-		String newbieName = null;
+		String newbUsername = null;
+		String newbPassword = null;
+		String newbName = null;
 		User user = new User();
 		
 		
@@ -40,18 +40,20 @@ public class UserLoginApplication {
 			
 			User[] newb = new User[length];
 			
-			// FOR LOOP TO CREATE AN ARRAY OF DIFFERENT USERS
+			// FOR LOOP, TO CREATE AN ARRAY OF DIFFERENT USERS
 			for (i = 0; i < length; i++) {
 				// STORE EACH USER DATA STRING INTO AN ARRAY
 				credArgs = credential2.split(",");
 				
 				// ASSIGN EACH USER DATA ITEM IN THE ARRAY TO VARIABLES FOR USERNAME, PASSWORD, NAME
 				newb[i]=user.createUser(credArgs[0], credArgs[1], credArgs[2]);
-				newbieUsername = newb[i].getUsername();	
-				newbiePassword = newb[i].getPassword();
-				newbieName = newb[i].getName();
-				System.out.println(newbieUsername + "," + newbiePassword + "," + newbieName);
+				newbUsername = newb[i].getUsername();	
+				newbPassword = newb[i].getPassword();
+				newbName = newb[i].getName();
 				credential2 = input2.readLine();
+				
+				// OUTPUT USER DATA IN CONSOLE FOR TESTING
+				System.out.println(newbUsername + "," + newbPassword + "," + newbName);
 				}
 			
 			Scanner scanner = new Scanner(System.in);
@@ -70,22 +72,23 @@ public class UserLoginApplication {
 					if (un != newb[n].getUsername()) {
 					} 
 					
-					else if (un == newb[n].getUsername()) {
-						for (int m = 0; m<length; m++) {
-							if (pw != newb[m].getPassword()) {
-							}
-							else if (pw == newb[m].getPassword()) {
-								System.out.println("Welcome" + newb[m].getName() + "!");
-								System.exit(0);
-							}
-						}
-						
-					}
-					
+										
 				}
-				System.out.println("Invalid login, please try again.");
+				System.out.println("Invalid username, please try again.");
 				wrongAttempts++;
 				continue;
+				
+				
+				for (int m = 0; m<length; m++) {
+					if (pw != newb[m].getPassword()) {
+						System.out.println("Invalid password, please try again.");
+						wrongAttempts++;
+					}
+					else if (pw == newb[m].getPassword()) {
+						System.out.println("Welcome" + newb[m].getName() + "!");
+						System.exit(0);
+					}
+				}
 				
 				
 			}
