@@ -8,9 +8,10 @@ public class UserService {
 
 	int length = 0;
 	int i = 0;
+	BufferedReader br;
 	String[] credentialArg;
-	BufferedReader br = null;
-	
+	int argLength = 0;
+	BufferedReader buffRead;
 	
 	// METHOD TO DETERMINE LENGTH OF THE USER DATA ARRAY
 	public int getLength (BufferedReader br) {
@@ -42,16 +43,16 @@ public class UserService {
 	
 	
 	// METHOD WITH FOR LOOP, TO CREATE AN ARRAY OF DIFFERENT USERS
-	public String[] credentialArray (int length, BufferedReader br) {
-		this.br=br;
-		this.length=length;
+	public String[] credentialArray (int argLength, BufferedReader buffRead) {
+		this.argLength=argLength;
+		this.buffRead=buffRead;
 		try {
-			String cred = br.readLine();
-			for (i = 0; i < length; i++) {
+			String cred = buffRead.readLine();
+			for (i = 0; i < argLength; i++) {
 				credentialArg = cred.split(",");
-				cred = br.readLine();
+				cred = buffRead.readLine();
 				}
-			br.close();
+			buffRead.close();
 		} catch (FileNotFoundException x) {
 			System.out.println("Oops, the file wasn't found");
 			x.printStackTrace(); 
@@ -61,7 +62,7 @@ public class UserService {
 		} finally {
 			System.out.println("Closing file reader");
 			try {
-				br.close();
+				buffRead.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
