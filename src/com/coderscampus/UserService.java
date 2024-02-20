@@ -1,7 +1,77 @@
 package com.coderscampus;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class UserService {
 
+	int length = 0;
+	int i = 0;
+	String[] credentialArg;
+	BufferedReader br = null;
+	
+	
+	// METHOD TO DETERMINE LENGTH OF THE USER DATA ARRAY
+	public int getLength (BufferedReader br) {
+		this.br=br;
+		try {
+			String credential = br.readLine();
+			while (credential != null) {
+				length++;
+				credential = br.readLine();
+				}
+			br.close();
+		} catch (FileNotFoundException x) {
+			System.out.println("Oops, the file wasn't found");
+			x.printStackTrace(); 
+		} catch (IOException x) {
+			System.out.println("Oops, there was an I/O Exception");
+			x.printStackTrace();
+		} finally {
+			System.out.println("Closing file reader");
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return length;
+	}
+	
+	
+	
+	// METHOD WITH FOR LOOP, TO CREATE AN ARRAY OF DIFFERENT USERS
+	public String[] credentialArray (int length, BufferedReader br) {
+		this.br=br;
+		this.length=length;
+		try {
+			String cred = br.readLine();
+			for (i = 0; i < length; i++) {
+				credentialArg = cred.split(",");
+				cred = br.readLine();
+				}
+			br.close();
+		} catch (FileNotFoundException x) {
+			System.out.println("Oops, the file wasn't found");
+			x.printStackTrace(); 
+		} catch (IOException x) {
+			System.out.println("Oops, there was an I/O Exception");
+			x.printStackTrace();
+		} finally {
+			System.out.println("Closing file reader");
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return credentialArg;
+	}
+					
+	
+		
+}
 	
 	
 /*
@@ -44,4 +114,4 @@ public class UserService {
 */
 	
 	
-}
+
