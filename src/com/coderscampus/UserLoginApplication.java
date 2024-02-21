@@ -16,8 +16,7 @@ public class UserLoginApplication {
 		BufferedReader input2 = null;
 		int arrayLength = 0;
 		UserService userService = new UserService();
-		Scanner scanner;
-		
+		Scanner scanner;		
 		
 		try {
 			// READ USER DATA FROM TXT FILE
@@ -43,6 +42,7 @@ public class UserLoginApplication {
 				
 				// VALIDATION 
 				for (int n = 0; n < arrayLength; n++) {
+					
 					if (un == newb[n].getUsername() && pw == newb[n].getPassword()) {
 						System.out.println("Welcome" + newb[n].getName() + "!");
 						System.exit(0);
