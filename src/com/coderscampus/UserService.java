@@ -12,6 +12,10 @@ public class UserService {
 	String[] credentialArg;
 	int argLength = 0;
 	BufferedReader buffRead;
+	User theUser = new User();
+	String newbUsername = null;
+	String newbPassword = null;
+	String newbName = null;
 	
 	// METHOD TO DETERMINE LENGTH OF THE USER DATA ARRAY
 	public int getLength (BufferedReader br) {
@@ -21,53 +25,43 @@ public class UserService {
 			while (credential != null) {
 				length++;
 				credential = br.readLine();
-				}
-			br.close();
+				}			
 		} catch (FileNotFoundException x) {
 			System.out.println("Oops, the file wasn't found");
 			x.printStackTrace(); 
 		} catch (IOException x) {
 			System.out.println("Oops, there was an I/O Exception");
 			x.printStackTrace();
-		} finally {
-			System.out.println("Closing file reader");
-			try {
-				br.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		return length;
 	}
 	
 	
 	
 	// METHOD WITH FOR LOOP, TO CREATE AN ARRAY OF DIFFERENT USERS
-	public String[] credentialArray (int argLength, BufferedReader buffRead) {
+	public User[] credentialArray (int argLength, BufferedReader buffRead) {
 		this.argLength=argLength;
 		this.buffRead=buffRead;
+		User[] userCredArg = new User[argLength];
 		try {
 			String cred = buffRead.readLine();
 			for (i = 0; i < argLength; i++) {
 				credentialArg = cred.split(",");
+				userCredArg[i] = theUser.createUser(credentialArg[0], credentialArg[1], credentialArg[2]);
+				newbUsername = userCredArg[i].getUsername();	
+				newbPassword = userCredArg[i].getPassword();
+				newbName = userCredArg[i].getName();
 				cred = buffRead.readLine();
-				}
-			buffRead.close();
+				System.out.println(newbUsername + "," + newbPassword + "," + newbName);
+				}				
 		} catch (FileNotFoundException x) {
 			System.out.println("Oops, the file wasn't found");
 			x.printStackTrace(); 
 		} catch (IOException x) {
 			System.out.println("Oops, there was an I/O Exception");
 			x.printStackTrace();
-		} finally {
-			System.out.println("Closing file reader");
-			try {
-				buffRead.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return credentialArg;
+		} 
+		return userCredArg;
 	}
 					
 	
@@ -85,7 +79,7 @@ public class UserService {
 	10.	If a match is found then you should display a message that says:
 			Welcome {insert user's name here}
 			Note: you should populate the {insert user's name here} portion with 
-			the name of the User which matches the inputted username/password.
+			the name of the User which matches the inputed username/password.
 	11.	Once a user has successfully logged in, the program can terminate.
 	12.	If no match is found then you should display a message that says:
 			Invalid login, please try again.
@@ -98,8 +92,8 @@ public class UserService {
 	Determining a Match
 		A match is found when two conditions are met:
 		
-		  1. The inputted username is a case insensitive match with the username property in the User object
-		  2. The inputted password is a case sensitive match with the password property in the User object.
+		  1. The inputed username is a case insensitive match with the username property in the User object
+		  2. The inputed password is a case sensitive match with the password property in the User object.
 
 
 	UserService class 

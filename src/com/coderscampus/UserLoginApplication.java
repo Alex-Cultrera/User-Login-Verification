@@ -13,12 +13,8 @@ public class UserLoginApplication {
 	public static void main(String[] args) {
 	
 		BufferedReader input = null;
+		BufferedReader input2 = null;
 		int arrayLength = 0;
-		int i = 0;
-		String newbUsername = null;
-		String newbPassword = null;
-		String newbName = null;
-		User user = new User();
 		UserService userService = new UserService();
 		Scanner scanner;
 		
@@ -26,25 +22,14 @@ public class UserLoginApplication {
 		try {
 			// READ USER DATA FROM TXT FILE
 			input = new BufferedReader(new FileReader("data1.txt"));
+			input2 = new BufferedReader(new FileReader("data1.txt"));
 												
 			// STORE EACH USER DATA STRING INTO AN ARRAY
 			// ASSIGN EACH USER DATA ITEM IN THE ARRAY TO VARIABLES FOR USERNAME, PASSWORD, NAME
-			arrayLength = userService.getLength(input);
+			arrayLength = userService.getLength(input);	
 			User[] newb = new User[arrayLength];
-			for (i=0; i<arrayLength; i++) {
-				newb[i]=user.createUser(userService.credentialArray(arrayLength, input)[0], 
-					userService.credentialArray(arrayLength, input)[1], 
-					userService.credentialArray(arrayLength, input)[2]);
-				newbUsername = newb[i].getUsername();	
-				newbPassword = newb[i].getPassword();
-				newbName = newb[i].getName();
-			}
-						
-				
-			// OUTPUT USER DATA IN CONSOLE FOR TESTING
-			System.out.println(newbUsername + "," + newbPassword + "," + newbName);
-			
-			
+			newb=userService.credentialArray(arrayLength, input2);
+												
 			// GET INPUT FROM CONSOLE
 			scanner = new Scanner(System.in);
 			int wrongAttempts = 0;
@@ -58,29 +43,20 @@ public class UserLoginApplication {
 				
 				// VALIDATION 
 				for (int n = 0; n < arrayLength; n++) {
-					if (un == newb[n].getUsername()) {
-						for (int m = 0; m < arrayLength; m++) {
-							if (pw == newb[m].getPassword()) {
-								System.out.println("Welcome" + newb[m].getName() + "!");
-								System.exit(0);
-							}
-							else {
-								System.out.println("Invalid password, please try again.");
-								wrongAttempts++;
-								continue;
-							}
-						}
-					} 
-					else if (un != newb[n].getUsername()) {
-						System.out.println("Invalid username, please try again.");
-						wrongAttempts++;
-						continue;
+					if (un == newb[n].getUsername() && pw == newb[n].getPassword()) {
+						System.out.println("Welcome" + newb[n].getName() + "!");
+						System.exit(0);
 					}
 					
 				}
+				System.out.println("Invalid login, please try again.");
+				wrongAttempts++;
+				continue;
+										
+			}
 			System.out.println("Too many failed login attempts, you are now locked out.");
 			System.exit(0);
-			}
+			
 			
 			input.close();		
 							
