@@ -6,8 +6,6 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-
-
 public class UserLoginApplication {
 
 	public static void main(String[] args) {
@@ -41,23 +39,18 @@ public class UserLoginApplication {
 				String pw = scanner.next();
 				
 				// VALIDATION 
-				for (int n = 0; n < arrayLength; n++) {
-					
-					if (un == newb[n].getUsername() && pw == newb[n].getPassword()) {
-						System.out.println("Welcome" + newb[n].getName() + "!");
+				for (int n = 0; n < arrayLength; n++) {					
+					if (un .equalsIgnoreCase(newb[n].getUsername()) && pw .equals(newb[n].getPassword())) {
+						System.out.println("Welcome " + newb[n].getName() + "!");
 						System.exit(0);
-					}
-					
+					}					
 				}
 				System.out.println("Invalid login, please try again.");
 				wrongAttempts++;
-				continue;
-										
+				continue;										
 			}
 			System.out.println("Too many failed login attempts, you are now locked out.");
-			System.exit(0);
-			
-			
+			System.exit(0);			
 			input.close();		
 							
 		} catch (FileNotFoundException x) {
@@ -75,8 +68,4 @@ public class UserLoginApplication {
 			}
 		}
 	}
-}
-
-		
-		
-		
+}				
