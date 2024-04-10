@@ -7,17 +7,11 @@ public class User {
 	private String password;
 	private String name;
 		
-	
-	public User createUser (String username, String password, String name) {
-		User theUser = new User();
-		this.username=username;
-		this.password=password;
-		this.name=name;
-		theUser.setUsername(username);
-		theUser.setPassword(password);
-		theUser.setName(name);
-		return theUser;
-		}
+	public User(String username, String password, String name) {
+		this.username = username;
+		this.password = password;
+		this.name = name;
+	}
 	
 	public String getUsername() {
 		return username;
